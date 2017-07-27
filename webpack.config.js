@@ -1,16 +1,32 @@
-var glob = require('glob');
+var yaml = require('js-yaml');
+var fs = require('fs');
 var path = require('path');
 var nodeExternals = require('webpack-node-externals');
 
-// Required for Create React App Babel transform
-process.env.NODE_ENV = 'production';
+var handlerRegex = /\.[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/;
+var include = './_webpack/include.js';
+var entries = {};
+
+var doc = yaml.safeLoad(fs.readFileSync('serverless.yml', 'utf8'));
+
+// Find all the handler files in serverless.yml
+// and build the entry array with them
+for (var key in doc.functions) {
+	var handler = doc.functions[key].handler;
+	var entryKey = handler.replace(handlerRegex, '');
+
+	// Add error handling and source map support
+	entries[entryKey] = [include, './' + entryKey + '.js'];
+}
+
+console.log(entries);
 
 module.exports = {
-	
-	// Use all js files in project root (except
-	// the webpack config) as an entry
-	entry: globEntries('!(webpack.config).js'),
+	entry: entries,
 	target: 'node',
+
+	// Generate sourcemaps for proper error messages
+	devtool: 'source-map',
 
 	// Since 'aws-sdk' is not compatible with webpack,
 	// we exclude all node dependencies
@@ -18,31 +34,17 @@ module.exports = {
 
 	// Run babel on all .js files and skip those in node_modules
 	module: {
-		rules: [{
+		loaders: [{
 			test: /\.js$/,
-			loader: 'babel-loader',
+			loaders: ['babel-loader'],
 			include: __dirname,
 			exclude: /node_modules/,
 		}]
 	},
 
-	// We are going to create multiple APIs in this guide, and we are 
-	// going to create a js file to for each, we need this output block
 	output: {
 		libraryTarget: 'commonjs',
 		path: path.join(__dirname, '.webpack'),
 		filename: '[name].js'
-	},
-};
-
-function globEntries(globPath) {
-	var files = glob.sync(globPath);
-	var entries = {};
-
-	for (var i = 0; i < files.length; i++) {
-		var entry = files[i];
-		entries[path.basename(entry, path.extname(entry))] = './' + entry;
 	}
-
-	return entries;
-}
+};

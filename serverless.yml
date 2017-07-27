@@ -1,5 +1,7 @@
 service: controversies-of-science-api
 
+frameworkVersion: ">=1.1.0 <2.0.0"
+
 # Use serverless-webpack plugin to transpile ES6/ES7
 plugins:
   - serverless-webpack
@@ -27,7 +29,7 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:us-west-1:*:*"
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
@@ -37,7 +39,7 @@ functions:
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
   create:
-    handler: create.create
+    handler: cards/create.create
     events:
       - http:
           path: controversies

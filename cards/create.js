@@ -1,4 +1,4 @@
-import { success, failure } from './libs/response-lib';
+import { success, failure } from '../libs/response-lib';
 
 const
 	AWS = require('aws-sdk'), // eslint-disable-line import/no-extraneous-dependencies
