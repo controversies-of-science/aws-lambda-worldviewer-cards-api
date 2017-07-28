@@ -31,19 +31,22 @@ provider:
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
+# - authorizer: authenticate using the AWS IAM role
 functions:
-  # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /controversies
-  # - method: POST request
-  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
-  #     domain api call
-  # - authorizer: authenticate using the AWS IAM role
   create:
     handler: cards/create.create
     events:
       - http:
           path: controversies
           method: post
+          cors: true
+          # authorizer: aws_iam
+  get:
+    handler: cards/get.get
+    events:
+      - http:
+          path: controversies/{slug}
+          method: get
           cors: true
           # authorizer: aws_iam
 
