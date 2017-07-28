@@ -49,6 +49,30 @@ functions:
           method: get
           cors: true
           # authorizer: aws_iam
+  slugs:
+    handler: cards/slugs.get
+    events:
+      - http:
+          path: controversies
+          method: get
+          cors: true
+          # authorizer: aws_iam
+  delete:
+    handler: cards/delete.del
+    events:
+      - http:
+          path: controversies/{slug}
+          method: delete
+          cors: true
+          # authorizer: aws_iam
+  update:
+    handler: cards/update.update
+    events:
+      - http:
+          path: controversies/{slug}
+          method: put
+          cors: true
+          # authorizer: aws_iam
 
 resources:
   Resources:

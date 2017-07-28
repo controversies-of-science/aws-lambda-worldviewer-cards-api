@@ -6,7 +6,8 @@ const
 
 AWS.config.update({region:'us-west-1'});
 
-export const create = (event, context, callback) => {
+export const update = (event, context, callback) => {
+	const slug = event.pathParameters.slug;
 	const timestamp = new Date().toISOString();
 	const data = JSON.parse(event.body);
 

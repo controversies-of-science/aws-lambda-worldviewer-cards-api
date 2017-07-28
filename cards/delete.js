@@ -6,7 +6,7 @@ const
 
 AWS.config.update({region:'us-west-1'});
 
-export const get = (event, context, callback) => {
+export const del = (event, context, callback) => {
 	const slug = event.pathParameters.slug;
 
 	const params = {
@@ -16,12 +16,12 @@ export const get = (event, context, callback) => {
 		}
 	};
 
-	dynamoDb.get(params, (dbError, result) => {
+	dynamoDb.delete(params, (dbError, data) => {
 		if (dbError) {
 			console.error(dbError);
 			callback(null, failure(dbError));
+		} else {
+			callback(null, success(data));
 		}
-
-		callback(null, success(result.Item));
 	});
 };

@@ -7,21 +7,24 @@ const
 AWS.config.update({region:'us-west-1'});
 
 export const get = (event, context, callback) => {
-	const slug = event.pathParameters.slug;
-
 	const params = {
 		TableName: process.env.DYNAMODB_TABLE,
-		Key: {
-			slug
-		}
+		Select: 'SPECIFIC_ATTRIBUTES',
+		AttributesToGet: [ 'slug' ]
 	};
 
-	dynamoDb.get(params, (dbError, result) => {
+	dynamoDb.scan(params, (dbError, result) => {
 		if (dbError) {
 			console.error(dbError);
 			callback(null, failure(dbError));
 		}
 
-		callback(null, success(result.Item));
+		let slugsArray = [];
+
+		for (let slug of result.Items) {
+			slugsArray.push(slug['slug']);
+		}
+
+		callback(null, success(slugsArray));
 	});
 };
