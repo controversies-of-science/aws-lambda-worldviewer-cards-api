@@ -1,4 +1,4 @@
-service: controversies-of-science-api
+service: controversies-of-science-cards-api
 
 frameworkVersion: ">=1.1.0 <2.0.0"
 
