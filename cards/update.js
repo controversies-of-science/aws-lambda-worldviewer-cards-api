@@ -16,15 +16,16 @@ export const update = (event, context, callback) => {
 		Item: {
 			slug: data.slug, // partition key
 
-			name: data.name,
+			cardName: data.cardName,
+			cardSummary: data.cardSummary,
+			cardCategory: data.cardCategory,
 			text: data.text, // array of paragraphs
-			summary: data.summary,
-			author: data.author,
-			original: data.original,
-			category: data.category,
-
+			cardAuthor: data.cardAuthor,
+			gplusUrl: data.gplusUrl,
+			publishDate: data.publishDate,
+			updateDate: data.updateDate,
+			images: data.images,
 			timestamp,
-			posted: data.posted
 		},
 	};
 
