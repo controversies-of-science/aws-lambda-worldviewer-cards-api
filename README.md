@@ -17,7 +17,7 @@ The API has all of the functionality that I'm going to need, but I'm still addin
 
 ### Create a New Controversy
 
-> curl -X POST https://q9paj2zuf1.execute-api.us-west-1.amazonaws.com/prod/controversies --data '{ "slug": "test-controversy", "name": "This is a Test", "summary": "Stuff / Things / About Controversies", "category": "ongoing", "text": [ "one", "two", "three" ] }'
+> curl -X POST https://q9paj2zuf1.execute-api.us-west-1.amazonaws.com/prod/controversies --data '{ "slug": "test-controversy", "cardName": "This is a Test", "cardSummary": "Stuff / Things / About Controversies", "cardCategory": "ongoing", "text": [ "one", "two", "three" ], "cardAuthor": "Chris Reeve", "gplusUrl": "http://localhost:3000", "publishDate": "today", "updateDate": "tomorrow", "images": "stuff" }'
 
 ### Get a Controversy by Slug
 
@@ -33,4 +33,4 @@ The API has all of the functionality that I'm going to need, but I'm still addin
 
 ### Update a Controversy
 
-> curl -X PUT https://q9paj2zuf1.execute-api.us-west-1.amazonaws.com/prod/controversies/test-controversy-2 --data '{ "slug": "test-controversy-2", "name": "This is a Test", "summary": "New Summary", "category": "ongoing", "text": [ "one", "two", "three" ] }'
+> curl -X PUT https://q9paj2zuf1.execute-api.us-west-1.amazonaws.com/prod/controversies/test-controversy-2 --data '{ "slug": "test-controversy-2", "cardName": "This is a Test", "cardSummary": "New Summary", "cardCategory": "ongoing", "text": [ "one", "two", "three" ], "cardAuthor": "Chris Reeve", "gplusUrl": "http://localhost:3000", "publishDate": "today", "updateDate": "tomorrow", "images": "stuff" }'

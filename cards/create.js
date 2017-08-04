@@ -23,7 +23,7 @@ export const create = (event, context, callback) => {
 			gplusUrl: data.gplusUrl,
 			publishDate: data.publishDate,
 			updateDate: data.updateDate,
-			images: data.images,
+			images: data.images, // object
 			timestamp,
 		},
 	};
