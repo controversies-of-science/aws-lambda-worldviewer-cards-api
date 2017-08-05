@@ -16,6 +16,7 @@ export const update = (event, context, callback) => {
 		Item: {
 			slug: data.slug, // partition key
 
+			shortSlug: data.shortSlug,
 			cardName: data.cardName,
 			cardSummary: data.cardSummary,
 			cardCategory: data.cardCategory,
