@@ -89,6 +89,6 @@ resources:
           - AttributeName: slug
             KeyType: HASH
         ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 20
+          ReadCapacityUnits: 25
+          WriteCapacityUnits: 50
         TableName: ${self:provider.environment.DYNAMODB_TABLE}
