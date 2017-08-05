@@ -36,6 +36,7 @@ provider:
 functions:
   create:
     handler: cards/create.create
+    timeout: 15
     events:
       - http:
           path: controversies
