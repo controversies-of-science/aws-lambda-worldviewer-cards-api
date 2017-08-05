@@ -17,20 +17,20 @@ The API has all of the functionality that I'm going to need, but I'm still addin
 
 ### Create a New Controversy
 
-> curl -X POST https://kqak9vsa1h.execute-api.us-west-1.amazonaws.com/prod/controversies --data '{ "slug": "test-controversy", "cardName": "This is a Test", "cardSummary": "Stuff / Things / About Controversies", "cardCategory": "ongoing", "text": [ "one", "two", "three" ], "cardAuthor": "Chris Reeve", "gplusUrl": "http://localhost:3000", "publishDate": "today", "updateDate": "tomorrow", "images": "stuff" }'
+> curl -X POST https://1xh0wwfkjf.execute-api.us-west-1.amazonaws.com/prod/controversies --data '{ "slug": "test-controversy", "cardName": "This is a Test", "cardSummary": "Stuff / Things / About Controversies", "cardCategory": "ongoing", "text": [ "one", "two", "three" ], "cardAuthor": "Chris Reeve", "gplusUrl": "http://localhost:3000", "publishDate": "today", "updateDate": "tomorrow", "images": "stuff" }'
 
 ### Get a Controversy by Slug
 
-> curl https://kqak9vsa1h.execute-api.us-west-1.amazonaws.com/prod/controversies/test-controversy
+> curl https://1xh0wwfkjf.execute-api.us-west-1.amazonaws.com/prod/controversies/test-controversy
 
 ### Get All Controversy Card Slugs
 
-> curl https://kqak9vsa1h.execute-api.us-west-1.amazonaws.com/prod/controversies
+> curl https://1xh0wwfkjf.execute-api.us-west-1.amazonaws.com/prod/controversies
 
 ### Delete a Controversy
 
-> curl -X DELETE https://kqak9vsa1h.execute-api.us-west-1.amazonaws.com/prod/controversies/test-controversy
+> curl -X DELETE https://1xh0wwfkjf.execute-api.us-west-1.amazonaws.com/prod/controversies/test-controversy
 
 ### Update a Controversy
 
-> curl -X PUT https://kqak9vsa1h.execute-api.us-west-1.amazonaws.com/prod/controversies/test-controversy-2 --data '{ "slug": "test-controversy-2", "cardName": "This is a Test", "cardSummary": "New Summary", "cardCategory": "ongoing", "text": [ "one", "two", "three" ], "cardAuthor": "Chris Reeve", "gplusUrl": "http://localhost:3000", "publishDate": "today", "updateDate": "tomorrow", "images": "stuff" }'
+> curl -X PUT https://1xh0wwfkjf.execute-api.us-west-1.amazonaws.com/prod/controversies/test-controversy-2 --data '{ "slug": "test-controversy-2", "cardName": "This is a Test", "cardSummary": "New Summary", "cardCategory": "ongoing", "text": [ "one", "two", "three" ], "cardAuthor": "Chris Reeve", "gplusUrl": "http://localhost:3000", "publishDate": "today", "updateDate": "tomorrow", "images": "stuff" }'
