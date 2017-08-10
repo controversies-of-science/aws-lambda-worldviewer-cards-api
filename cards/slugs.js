@@ -7,6 +7,9 @@ const
 AWS.config.update({region:'us-west-1'});
 
 export const get = (event, context, callback) => {
+	console.log('event.requestContext.identity.cognitoIdentityId:');
+	console.log(event.requestContext.identity.cognitoIdentityId);
+
 	const params = {
 		TableName: process.env.DYNAMODB_TABLE,
 		Select: 'SPECIFIC_ATTRIBUTES',
@@ -18,6 +21,9 @@ export const get = (event, context, callback) => {
 			console.error(dbError);
 			callback(null, failure(dbError));
 		}
+
+		console.log('result:');
+		console.dir(result);
 
 		let slugsArray = [];
 
